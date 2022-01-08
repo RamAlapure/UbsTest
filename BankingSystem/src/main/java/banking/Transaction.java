@@ -22,20 +22,25 @@ public class Transaction {
 	 *             Account validation failed.
 	 */
 	public Transaction(Bank bank, Long accountNumber, int attemptedPin) throws Exception {
-		// complete the function
+		this.accountNumber = accountNumber;
+		this.bank = bank;
+		Account account = bank.getAccount(accountNumber);
+		boolean validatePin = account.validatePin(attemptedPin);
+		if(!validatePin) throw new Exception("Account validation failed");
 	}
 
 	public double getBalance() {
-		// complete the function
-        return -1;
+		Account account = bank.getAccount(accountNumber);
+        return account.getBalance();
 	}
 
 	public void credit(double amount) {
-		// complete the function
+		Account account = bank.getAccount(accountNumber);
+		account.creditAccount(amount);
 	}
 
 	public boolean debit(double amount) {
-		// complete the function
-        return true;
+		Account account = bank.getAccount(accountNumber);
+		return account.debitAccount(amount);
 	}
 }

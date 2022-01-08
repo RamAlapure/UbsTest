@@ -45,7 +45,7 @@ public abstract class Account {
 
     public boolean debitAccount(double amount) {
         boolean isDebited = false;
-        if (this.balance > amount) {
+        if (this.balance >= amount) {
             this.balance -= amount;
             isDebited = true;
         }
