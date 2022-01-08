@@ -2,6 +2,7 @@ package banking;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Account implementation for commercial (business) customers.<br><br>
@@ -9,18 +10,18 @@ import java.util.List;
  * Private Variables:<br>
  * {@link #authorizedUsers}: List&lt;Person&gt;<br>
  */
-public class CommercialAccount  {
+public class CommercialAccount extends Account {
 	private List<Person> authorizedUsers;
 
 	public CommercialAccount(Company company, Long accountNumber, int pin, double startingDeposit) {
-		// complete the function
+		super(company, accountNumber, pin, startingDeposit);
 	}
 
 	/**
 	 * @param person The authorized user to add to the account.
 	 */
 	protected void addAuthorizedUser(Person person) {
-		// complete the function
+		authorizedUsers.add(person);
 	}
 
 	/**
@@ -28,7 +29,6 @@ public class CommercialAccount  {
 	 * @return true if person matches an authorized user in {@link #authorizedUsers}; otherwise, false.
 	 */
 	public boolean isAuthorizedUser(Person person) {
-		// complete the function
-        return true;
+        return authorizedUsers.contains(person);
 	}
 }

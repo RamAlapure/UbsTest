@@ -3,7 +3,7 @@ package banking;
 /**
  * Abstract bank account class.<br>
  * <br>
- *
+ * <p>
  * Private Variables:<br>
  * {@link #accountHolder}: AccountHolder<br>
  * {@link #accountNumber}: Long<br>
@@ -11,41 +11,44 @@ package banking;
  * {@link #balance}: double
  */
 public abstract class Account {
-	private AccountHolder accountHolder;
-	private Long accountNumber;
-	private int pin;
-	private double balance;
+    private AccountHolder accountHolder;
+    private Long accountNumber;
+    private int pin;
+    private double balance;
 
-	protected Account(AccountHolder accountHolder, Long accountNumber, int pin, double startingDeposit) {
-		// complete the constructor
-	}
+    protected Account(AccountHolder accountHolder, Long accountNumber, int pin, double startingDeposit) {
+        this.accountHolder = accountHolder;
+        this.accountNumber = accountNumber;
+        this.pin = pin;
+        this.balance = startingDeposit;
+    }
 
-	public AccountHolder getAccountHolder() {
-		// complete the function
-        return null;
-	}
+    public AccountHolder getAccountHolder() {
+        return this.accountHolder;
+    }
 
-	public boolean validatePin(int attemptedPin) {
-		// complete the function
-        return true;
-	}
+    public boolean validatePin(int attemptedPin) {
+        return this.pin == attemptedPin;
+    }
 
-	public double getBalance() {
-		// complete the function
-        return -1;
-	}
+    public double getBalance() {
+        return this.balance;
+    }
 
-	public Long getAccountNumber() {
-		// complete the function
-        return -1L;
-	}
+    public Long getAccountNumber() {
+        return this.accountNumber;
+    }
 
-	public void creditAccount(double amount) {
-		// complete the function
-	}
+    public void creditAccount(double amount) {
+        this.balance += amount;
+    }
 
-	public boolean debitAccount(double amount) {
-		// complete the function
-        return true;
-	}
+    public boolean debitAccount(double amount) {
+        boolean isDebited = false;
+        if (this.balance > amount) {
+            this.balance -= amount;
+            isDebited = true;
+        }
+        return isDebited;
+    }
 }
